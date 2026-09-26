@@ -36,8 +36,9 @@ Wie viel Zeit das wirklich spart, messe ich und trage es im [Laborbuch](logs/) e
 Du musst nicht programmieren können, um hier etwas mitzunehmen:
 
 1. **Lies das [Laborbuch](logs/).** Jeder Eintrag hat am Ende eine kurze deutsche Zusammenfassung.
-2. **Schau in [`SOURCES.md`](SOURCES.md).** Dort stehen alle Projekte, auf denen ich aufbaue, mit Link und Lizenz.
-3. **Frag auf X.** Ich antworte auf Deutsch und auf Englisch.
+2. **Lies die [Field Notes zum DGX Spark](notes/dgx-spark-field-notes.md)** (englisch, mit deutscher Kurzfassung am Ende).
+3. **Schau in [`SOURCES.md`](SOURCES.md).** Dort stehen alle Projekte, auf denen ich aufbaue, mit Link und Lizenz.
+4. **Frag auf X.** Ich antworte auf Deutsch und auf Englisch.
 
 Die technische Doku (Hardware, Rezepte, Benchmarks) ist auf Englisch, weil die internationale Local-AI-Szene so arbeitet und Befehle, Configs und Messwerte ohnehin sprachunabhängig sind.
 
