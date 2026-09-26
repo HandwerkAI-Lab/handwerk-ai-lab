@@ -57,9 +57,22 @@ Runs on Spark #1 via vLLM as `qwen3.8-flash-next`.
 
 ## Posts, articles, papers
 
-| Date | Title | Author | Link | Used for |
+| Date | Title | Author | Type | Used for |
 | --- | --- | --- | --- | --- |
-| | | | | |
+| 2026-09-26 | [DGX Spark Handbook](https://x.com/exolabs/status/2103617535765573959) | [@0xSero](https://x.com/0xSero), [EXO Labs](https://x.com/exolabs) (reviewers @alexocheema, @alexzfunk) | X article | Overview, cable options, known practices – summarized in [`notes/`](notes/dgx-spark-field-notes.md) |
+| 2025-10-13 | [NVIDIA DGX Spark In-Depth Review](https://www.lmsys.org/blog/2025-10-13-nvidia-dgx-spark/) | LMSYS Org | Blog | Performance characteristics |
+| – | [The NVIDIA GB10 ConnectX-7 200GbE Networking is Really Different](https://www.servethehome.com/the-nvidia-gb10-connectx-7-200gbe-networking-is-really-different/) | ServeTheHome | Article | Networking architecture |
+| – | [Performance of llama.cpp on DGX Spark (#16578)](https://github.com/ggml-org/llama.cpp/discussions/16578) | ggml-org community | Discussion | Prefill vs. decode, Mac comparison |
+| – | [DGX Spark hard power-off fix](https://github.com/tonyd2wild/dgx-spark-hard-poweroff-fix) | tonyd2wild | Repo | Community workaround |
+| – | NVIDIA forum threads: [ConnectX-7 NIC](https://forums.developer.nvidia.com/t/connectx-7-nic-in-dgx-spark/350417), [QSFP breakout](https://forums.developer.nvidia.com/t/mellanox-qsfp-breakout/349775), [Spark ↔ Thor](https://forums.developer.nvidia.com/t/can-a-dgx-spark-and-agx-thor-connect-using-qsfp-cables/359450/6), [thermal throttling](https://forums.developer.nvidia.com/t/dgx-spark-gb10-thermal-throttling-after-ec-uefi-updates-acpi-zones-96-97c-fans-not-ramping/377044) | NVIDIA Developer Forum | Forum | Networking + known issues |
+
+## Official documentation
+
+| Doc | Link |
+| --- | --- |
+| DGX Spark hardware overview | [docs.nvidia.com](https://docs.nvidia.com/dgx/dgx-spark/hardware.html) |
+| Spark stacking / ConnectX-7 networking | [docs.nvidia.com](https://docs.nvidia.com/dgx/dgx-spark/spark-clustering.html) |
+| DGX Spark playbooks (Apache-2.0) | [GitHub](https://github.com/NVIDIA/dgx-spark-playbooks) |
 
 ## Hardware references
 
