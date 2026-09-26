@@ -30,6 +30,7 @@ Details: [`hardware/`](hardware/)
 | [`benchmarks/`](benchmarks/) | Measurements with date, method and raw data |
 | [`agent/`](agent/) | Agent config templates (no keys, no customer data) |
 | [`mcdma/`](mcdma/) | Notes on the Mac ↔ Spark RDMA setup |
+| [`notes/`](notes/) | Field notes: DGX Spark networking, known issues, what makes it fast |
 | [`SOURCES.md`](SOURCES.md) | Every repo, post and paper I built on |
 
 ## Principles
