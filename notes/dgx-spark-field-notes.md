@@ -57,6 +57,8 @@ MCDMA demonstrated a first prefill-on-Spark / decode-on-Mac handoff with Qwen3-4
 
 In the August post Ash also describes his target setup: two Sparks linked over ConnectX-7 for prompt processing, each Spark linked to the Mac Studio for decode.
 
+**Independent confirmation of the ConnectX-5 route:** [@petruspennanen](https://x.com/petruspennanen/status/2103837517208289760) (2026-09-26) linked a Bosgame M5 (AMD Strix Halo) to an ASUS GX10 (GB10) with the same card and enclosure (Mellanox MCX516A-CDAT in an OWC Helios 5S) and measured **29.7 Gbit/s with zero errors** using Ash's bandwidth tool. The 100G link was fine; the host's Thunderbolt/USB4 port capped the throughput. Takeaway: with this setup, **the host's Thunderbolt port sets the speed limit**, not the network card.
+
 ## 6. Where to learn more
 
 - [NVIDIA DGX Spark playbooks](https://github.com/NVIDIA/dgx-spark-playbooks) – official guides (vLLM, SGLang, NVFP4, linking Sparks, NCCL)
