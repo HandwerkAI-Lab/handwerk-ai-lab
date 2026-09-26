@@ -47,8 +47,8 @@ Die technische Doku (Hardware, Rezepte, Benchmarks) ist auf Englisch, weil die i
 | --- | --- |
 | 2× NVIDIA DGX Spark (je 128 GB Unified Memory) | Inference-Server (vLLM / SGLang) |
 | Mac Studio | Lokaler Agent (HERMES), MLX-Experimente |
-| Mellanox ConnectX-5 Ex im OWC Mercury Helios 5S (Thunderbolt) | RDMA-Verbindung Mac ↔ Spark über [MCDMA](https://github.com/ashhart/MCDMA) |
-| QSFP28-DAC-Kabel | Physische Verbindung Mac ↔ Spark |
+| Mellanox-ConnectX-Karte im OWC Mercury Helios 5S (Thunderbolt) – Modell wird geprüft, siehe [`hardware/`](hardware/) | RDMA-Verbindung Mac ↔ Spark über [MCDMA](https://github.com/ashhart/MCDMA) |
+| DAC-Kabel (Typ hängt von den Ports der Karte ab) | Physische Verbindung Mac ↔ Spark |
 
 Details: [`hardware/`](hardware/) (englisch)
 
