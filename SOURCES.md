@@ -21,6 +21,9 @@ Licenses were checked on the date shown. Always re-check the upstream repo befor
 | [Qwen3.8-Flash-Next-Single-DGX-Spark](https://github.com/MiaAI-Lab/Qwen3.8-Flash-Next-Single-DGX-Spark) | Mia's AI Lab · [@MiaAI_lab](https://x.com/MiaAI_lab) | AGPL-3.0-or-later (2026-09-26) | Reference recipe for qwen3.8-flash-next on one Spark. Linked only, not copied |
 | ↳ [qwen3.8-Flash-DGX](https://github.com/lancelind/qwen3.8-Flash-DGX) | lancelind | Apache-2.0 (per Mia's README) | FP8 KV-cache approach used in Mia's recipe |
 | [sparkDash](https://github.com/MiaAI-Lab/sparkDash) | Mia's AI Lab · [@MiaAI_lab](https://x.com/MiaAI_lab) | MIT, © 2026 Mia's AI Lab (2026-09-26) | Multi-Spark monitoring |
+| [TensorFold](https://github.com/ashhart/TensorFold) | Ash Hart · [@ashxhart](https://x.com/ashxhart) | MIT (2026-09-26) | Candidate for faster decode on the Mac – not tested yet |
+| [Imprint](https://github.com/ashhart/Imprint) | Ash Hart | no license shown (2026-09-26) | Candidate for KV-cache save/restore – not tested yet |
+| [Drift](https://github.com/ashhart/Drift), [Syntra](https://github.com/ashhart/Syntra), [SparkPilot](https://github.com/ashhart/SparkPilot), [omlx fork](https://github.com/ashhart/omlx) | Ash Hart | Apache-2.0 (2026-09-26) | Watching, not used yet |
 | [vLLM](https://github.com/vllm-project/vllm) | vLLM project | Apache-2.0 | Inference server on the Sparks |
 
 ## Models
@@ -60,6 +63,7 @@ Runs on Spark #1 via vLLM as `qwen3.8-flash-next`.
 | Date | Title | Author | Type | Used for |
 | --- | --- | --- | --- | --- |
 | 2026-09-26 | [DGX Spark Handbook](https://x.com/exolabs/status/2103617535765573959) | [@0xSero](https://x.com/0xSero), [EXO Labs](https://x.com/exolabs) (reviewers @alexocheema, @alexzfunk) | X article | Overview, cable options, known practices – summarized in [`notes/`](notes/dgx-spark-field-notes.md) |
+| 2026-09-26 | [Ash Hart's repos in a home lab](https://x.com/volatilemarkts/status/2103862828285182128) | [@volatilemarkts](https://x.com/volatilemarkts) | X post | Overview of TensorFold, Imprint, Drift, Syntra, SparkPilot, omlx – in [`notes/`](notes/dgx-spark-field-notes.md) |
 | 2026-09-26 | [MCDMA between Strix Halo and GX10, 29.7 Gbit/s](https://x.com/petruspennanen/status/2103837517208289760) | [@petruspennanen](https://x.com/petruspennanen) | X post | Independent test of the CX5 Ex + Helios 5S route |
 | 2026-09-26 | [Problems on the way: adapter overheating, cable compatibility](https://x.com/petruspennanen/status/2103838514324377802) | [@petruspennanen](https://x.com/petruspennanen) | X post | Known issues in [`notes/`](notes/dgx-spark-field-notes.md) |
 | 2026-08-18 | [MCDMA over USB-C: Spark ⇄ Mac, two Sparks + Studio](https://x.com/ashxhart/status/2089749434087227672) | [@ashxhart](https://x.com/ashxhart) | X post | USB-C link numbers, target topology – in [`notes/`](notes/dgx-spark-field-notes.md) |
