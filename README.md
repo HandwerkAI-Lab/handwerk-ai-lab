@@ -16,8 +16,8 @@ I'm not an ML engineer. This repo is my lab notebook: what I run, what I measure
 | --- | --- |
 | 2× NVIDIA DGX Spark (128 GB unified memory each) | Inference servers (vLLM / SGLang) |
 | Mac Studio | Local agent host (HERMES), MLX experiments |
-| Mellanox ConnectX-5 Ex in OWC Mercury Helios 5S (Thunderbolt) | RDMA link Mac ↔ Spark via [MCDMA](https://github.com/ashhart/MCDMA) |
-| QSFP28 DAC cable | Physical link Mac ↔ Spark |
+| Mellanox ConnectX NIC in OWC Mercury Helios 5S (Thunderbolt) – model being verified, see [`hardware/`](hardware/) | RDMA link Mac ↔ Spark via [MCDMA](https://github.com/ashhart/MCDMA) |
+| DAC cable (type depends on NIC ports) | Physical link Mac ↔ Spark |
 
 Details: [`hardware/`](hardware/)
 
