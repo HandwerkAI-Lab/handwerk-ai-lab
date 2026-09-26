@@ -1,0 +1,13 @@
+.env
+*.env
+*.key
+*.pem
+secrets/
+data/
+customer*/
+kunden*/
+*.sqlite
+*.db
+.DS_Store
+__pycache__/
+*.log
