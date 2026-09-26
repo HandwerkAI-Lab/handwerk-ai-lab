@@ -70,6 +70,27 @@ In the August post Ash also describes his target setup: two Sparks linked over C
 - [How To Spark](https://howtospark.com/) – crowdsourced benchmarks with recipes
 - [NVIDIA Developer Forum – DGX Spark / GB10](https://forums.developer.nvidia.com/t/connectx-7-nic-in-dgx-spark/350417)
 
+## 7. Ash Hart's tool ecosystem (September 2026)
+
+Beyond MCDMA, Ash Hart ([@ashxhart](https://x.com/ashxhart)) published several related repos. A home-lab operator ([@volatilemarkts](https://x.com/volatilemarkts/status/2103862828285182128), 2026-09-26) reported results with most of them. **Their numbers, not mine; I checked each README on 2026-09-26.**
+
+| Repo | What it does (per README) | License | Reported by @volatilemarkts |
+| --- | --- | --- | --- |
+| [TensorFold](https://github.com/ashhart/TensorFold) | Fast, exact LLM decoding on **Apple Silicon (MLX)**, OpenAI-compatible endpoint | MIT | M3 Ultra, GLM: 45 → 60 tok/s, identical output |
+| [Imprint](https://github.com/ashhart/Imprint) | Saves processed context (KV cache) to disk and restores it – faster time to first token | none shown on GitHub | 44K-token context: 188 s cold → under 2 s |
+| [MCDMA](https://github.com/ashhart/MCDMA) | RDMA between Spark and Mac | Apache-2.0 | ~22–27 Gb/s, zero mismatches |
+| [Drift](https://github.com/ashhart/Drift) | Several models sharing memory over the network | Apache-2.0 | 9 models on 5 hardware families |
+| [Syntra](https://github.com/ashhart/Syntra) | Decision engine (routing) | Apache-2.0 | – |
+| [SparkPilot](https://github.com/ashhart/SparkPilot) | iPhone/iPad app showing GPU load, temperature and memory of DGX Sparks (beta) | Apache-2.0 (+ third-party AGPL/MIT parts) | – |
+| [omlx (fork)](https://github.com/ashhart/omlx) | LLM server for Apple Silicon; fork of [jundot/omlx](https://github.com/jundot/omlx) | Apache-2.0 | serves GLM across Mac Studios |
+
+**Open points before I rely on this:**
+
+- The post says TensorFold runs GLM-5.3-Flash 1.8–2.1× faster than vLLM **on DGX Sparks**. The TensorFold README only lists Apple Silicon (MLX) and does not mention Spark or CUDA. Unverified until a Spark version is documented.
+- TensorFold's supported models per README: Nemotron 3.5 Lightning 30B-A3B and Qwen3.8-27B need a 32 GB+ Mac; Qwen3.8 Flash Next needs 192 GB+. **My 64 GB M4 Max can run the first two, not Flash Next.**
+- Imprint shows no license on GitHub – don't copy code from it until that's clarified.
+- The post tags **@ashhart**; Ash's X handle is **@ashxhart**.
+
 ---
 
 🇩🇪 **Kurz gesagt:** Der Spark hat viel Speicher, aber wenig Speicherbandbreite. Schnell wird er mit MoE-Modellen, Speculative Decoding, parallelen Anfragen und mehreren verbundenen Sparks. Beim Netzwerk unbedingt die Port-Typen prüfen – SFP28-Karten und Adapter sind am Spark nicht getestet.
