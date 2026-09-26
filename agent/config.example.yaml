@@ -1,0 +1,7 @@
+# Example only – replace placeholders locally, never commit real values
+custom_providers:
+  - name: spark-1
+    base_url: http://<SPARK_1_HOST>:<PORT>/v1
+    api_key: ${SPARK_API_KEY}
+    models:
+      - <MODEL_NAME>
