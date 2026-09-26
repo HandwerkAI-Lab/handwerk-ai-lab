@@ -35,11 +35,15 @@ Next step: check the PCI device ID on the Mac (System Information → PCI: `0x10
 - **Mac Studio M4 Max 64 GB instead of M3 Ultra 256 GB.** MCDMA's published numbers are from the M3 Ultra. Nothing measured on the M4 Max yet.
 - **Two Sparks = two links.** The reference uses one cable per Studio port. MCDMA reports that both links share the enclosure bandwidth.
 - **The ceiling is Thunderbolt, not the port.** Per MCDMA the Thunderbolt 5 tunnel runs as PCIe Gen4 x4; sustained ~50.6 Gbit/s into and ~29.4 Gbit/s out of Studio memory were measured on MCDMA 0.1.18 with the ConnectX-5 Ex.
+- **Host Thunderbolt/USB4 sets the speed.** An independent test with the same card and enclosure (MCX516A-CDAT in a Helios 5S) on an AMD Strix Halo host reached 29.7 Gbit/s with zero errors, capped by the host's USB4 port ([@petruspennanen](https://x.com/petruspennanen/status/2103837517208289760)).
+- **Original vs. "compatible" cables.** MCDMA's numbers use the original Mellanox MCP1600-C001E30N. Third-party cables are not interchangeable everywhere: QsfpTek 100G cables were not recognized by a MikroTik switch, Naddod cables worked ([@petruspennanen](https://x.com/petruspennanen/status/2103838514324377802)). My FS.com cable is untested so far – if I reorder, I'll buy the original.
+- **Plan for heat.** A Plyisty 2×25 Gbit/s adapter overheated and shut down even with a large heatsink; it needed a fan ([@petruspennanen](https://x.com/petruspennanen/status/2103838514324377802)). Sparks run hot too. I'll check temperatures before publishing any measurement.
 - **Label your cables.** MCDMA documents a case where two crossed cables showed "port active" on both ends but transfers failed. Swapping the cables fixed it.
 
 ## Lesson so far
 
 Check the **port type** (SFP28 vs. QSFP28) of card, cable and peer before ordering anything. Card names alone are not enough.
+Buy exactly the parts from a tested setup first – card, enclosure **and** cable – then experiment.
 
 ## Wiring
 
