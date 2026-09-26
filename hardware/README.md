@@ -13,6 +13,7 @@ Reference data taken from the [MCDMA README → "Hardware used"](https://github.
 | NIC | Mellanox ConnectX-4 Lx, MCX4121A-ACAT (CX4121C), dual SFP28, 25 GbE, PCIe 3.0 x8, refurbished | 71,90 € | ✅ bought · ⚠️ card in the enclosure to be confirmed via PCI ID | ConnectX-5 Ex MCX516A-CDAT, dual QSFP28, 100 GbE |
 | Peer | 2× NVIDIA DGX Spark (ConnectX-7) | — | ✅ Spark #1 serving via vLLM | 1× DGX Spark (2 Sparks tested for transfers) |
 | RDMA cable | QSFP28-to-QSFP28 DAC, MCP1600-C001 compatible (FS.com) | — | ⏳ ordered · ⚠️ does not fit SFP28 ports | Mellanox MCP1600-C001E30N, 100G passive copper DAC, 1 m, one per Studio port |
+| Spark ↔ Spark cable | not bought yet – options: NVIDIA MCP1650-V00AE30 (reported working), Amphenol NJAAKK-N911 / Luxshare LMTQF022-SD-R (NVIDIA-validated) | — | ⏳ needed | – ([NVIDIA](https://docs.nvidia.com/dgx/dgx-spark/spark-clustering.html), [EXO Handbook](https://x.com/exolabs/status/2103617535765573959)) |
 | Management network | existing LAN (Mac + Sparks) | — | ✅ | separate Wi-Fi or Ethernet required |
 | Copper cable | Deleycon Cat 8 S-FTP RJ45 | — | 🅿️ parked | not part of reference setup |
 | SFP+ transceiver | FS.com SFP+ 10GBase-T (SFP-10G-T30L / MFM1T02A-T-I) | — | 🅿️ parked | not part of reference setup |
