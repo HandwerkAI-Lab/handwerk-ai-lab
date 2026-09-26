@@ -60,6 +60,7 @@ Runs on Spark #1 via vLLM as `qwen3.8-flash-next`.
 | Date | Title | Author | Type | Used for |
 | --- | --- | --- | --- | --- |
 | 2026-09-26 | [DGX Spark Handbook](https://x.com/exolabs/status/2103617535765573959) | [@0xSero](https://x.com/0xSero), [EXO Labs](https://x.com/exolabs) (reviewers @alexocheema, @alexzfunk) | X article | Overview, cable options, known practices – summarized in [`notes/`](notes/dgx-spark-field-notes.md) |
+| 2026-09-26 | [MCDMA between Strix Halo and GX10, 29.7 Gbit/s](https://x.com/petruspennanen/status/2103837517208289760) | [@petruspennanen](https://x.com/petruspennanen) | X post | Independent test of the CX5 Ex + Helios 5S route |
 | 2026-08-18 | [MCDMA over USB-C: Spark ⇄ Mac, two Sparks + Studio](https://x.com/ashxhart/status/2089749434087227672) | [@ashxhart](https://x.com/ashxhart) | X post | USB-C link numbers, target topology – in [`notes/`](notes/dgx-spark-field-notes.md) |
 | 2025-10-13 | [NVIDIA DGX Spark In-Depth Review](https://www.lmsys.org/blog/2025-10-13-nvidia-dgx-spark/) | LMSYS Org | Blog | Performance characteristics |
 | – | [The NVIDIA GB10 ConnectX-7 200GbE Networking is Really Different](https://www.servethehome.com/the-nvidia-gb10-connectx-7-200gbe-networking-is-really-different/) | ServeTheHome | Article | Networking architecture |
