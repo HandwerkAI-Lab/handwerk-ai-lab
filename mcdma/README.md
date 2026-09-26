@@ -5,10 +5,11 @@ This folder only holds my notes and results. For install steps, follow the upstr
 
 ## Status
 
-- [x] ConnectX-5 Ex installed in Helios 5S, connected via Thunderbolt
+- [x] Mellanox NIC installed in Helios 5S, connected via Thunderbolt
+- [ ] Confirm NIC model via PCI ID (invoice says ConnectX-4 Lx, see [`hardware/`](../hardware/))
 - [x] macOS upgraded to required build, matching Command Line Tools installed
 - [x] Portable build/test suite passes
-- [ ] QSFP28 DAC cable connected
+- [ ] Matching cable chosen (SFP28 vs. QSFP28) and connected
 - [ ] Kext install (Recovery / security settings) – backup done
 - [ ] First cross-host latency measurement
 
