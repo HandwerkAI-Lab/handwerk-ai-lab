@@ -31,6 +31,8 @@ Sources: [NVIDIA hardware docs](https://docs.nvidia.com/dgx/dgx-spark/hardware.h
 | Throttling after EC `0x02000005` / UEFI `0x03000006` (fans ramp too late) | Some users rolled back firmware; no official fix as of Aug 2026 | ❌ | [NVIDIA forum](https://forums.developer.nvidia.com/t/dgx-spark-gb10-thermal-throttling-after-ec-uefi-updates-acpi-zones-96-97c-fans-not-ramping/377044) |
 | Runs hot | Stand it on its side, space around the mesh | ❌ experience | [EXO Handbook](https://x.com/exolabs/status/2103617535765573959) |
 | Model won't start | Almost always memory: one big model per Spark at a time | ❌ experience | [EXO Handbook](https://x.com/exolabs/status/2103617535765573959) |
+| Plyisty 2×25 Gbit/s adapter overheats and shuts down, even with a large heatsink | Add active cooling (a fan) | ❌ experience | [@petruspennanen](https://x.com/petruspennanen/status/2103838514324377802) |
+| QsfpTek 100G cables not recognized by a MikroTik switch | Naddod cables worked. Third-party "compatible" cables are not interchangeable everywhere – check reports for your exact device | ❌ experience | [@petruspennanen](https://x.com/petruspennanen/status/2103838514324377802) |
 | sparkDash has no auth on its API | Only run it on a trusted network | – | [noze.it](https://www.noze.it/en/insights/dgx-spark-local-models-august-2026/) |
 
 ## 4. What makes a Spark fast
