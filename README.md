@@ -1,5 +1,7 @@
 # Handwerk AI Lab
 
+**English** · [Deutsch](README.de.md)
+
 **A German craftsman running his solar business on local AI.**
 Two NVIDIA DGX Sparks, one Mac Studio, real customers. Everything reproducible, every source credited.
 
