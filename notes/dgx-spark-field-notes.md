@@ -48,6 +48,15 @@ Sources: [EXO Handbook](https://x.com/exolabs/status/2103617535765573959), [LMSY
 The Spark is strong at **prefill** (reading the prompt, compute-bound), a Mac with higher memory bandwidth is strong at **decode** (writing, bandwidth-bound). In one llama.cpp comparison an M4 Max generated faster than a Spark while the Spark processed prompts faster ([llama.cpp #16578](https://github.com/ggml-org/llama.cpp/discussions/16578)).
 MCDMA demonstrated a first prefill-on-Spark / decode-on-Mac handoff with Qwen3-4B ([MCDMA](https://github.com/ashhart/MCDMA)). Testing this on my setup is one of the main goals of this lab.
 
+**Two MCDMA link types – don't mix them up:**
+
+| Link | Published by Ash Hart | Measured (his numbers) | In the public repo? |
+| --- | --- | --- | --- |
+| USB-C, Spark ⇄ Mac directly, no extra NIC | [X post, 2026-08-18](https://x.com/ashxhart/status/2089749434087227672) | 939 MB/s single link; 1.80 GB/s Mac → both Sparks; 1.25 GB/s both Sparks → Mac; 24 µs round trip | Not documented in the current README (checked 2026-09-26) |
+| ConnectX-5 Ex in a Thunderbolt 5 enclosure, QSFP28 DAC to the Spark | [MCDMA README](https://github.com/ashhart/MCDMA) | ~50.6 Gbit/s into / ~29.4 Gbit/s out of Studio memory (0.1.18) | ✅ the documented, validated path |
+
+In the August post Ash also describes his target setup: two Sparks linked over ConnectX-7 for prompt processing, each Spark linked to the Mac Studio for decode.
+
 ## 6. Where to learn more
 
 - [NVIDIA DGX Spark playbooks](https://github.com/NVIDIA/dgx-spark-playbooks) – official guides (vLLM, SGLang, NVFP4, linking Sparks, NCCL)
