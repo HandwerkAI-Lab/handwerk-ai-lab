@@ -86,7 +86,8 @@ Beyond MCDMA, Ash Hart ([@ashxhart](https://x.com/ashxhart)) published several r
 
 **Open points before I rely on this:**
 
-- The post says TensorFold runs GLM-5.3-Flash 1.8–2.1× faster than vLLM **on DGX Sparks**. The TensorFold README only lists Apple Silicon (MLX) and does not mention Spark or CUDA. Unverified until a Spark version is documented.
+- The post says TensorFold runs GLM-5.3-Flash 1.8–2.1× faster than vLLM **on DGX Sparks**. The TensorFold README only lists Apple Silicon (MLX) and does not mention Spark or CUDA (checked 2026-09-26).
+- **A second user report on a Spark:** [@WescheNex1q](https://x.com/WescheNex1q/status/2103952756553699559) (2026-09-26) ran Qwen3.8-27B on one Spark, same 3 prompts, thinking off: **TensorFold with DFlash2 drafts 102.9 tok/s vs. vLLM MTP=3 (NVFP4) 34.9 tok/s**, TensorFold without drafts 12.9 tok/s; per prompt 126.9 / 75.7 / 106.2 tok/s (sequence / code / JSON); TTFT 0.12 s; drafted and serial output sha256-identical. His own caveats: weights not matched (MLX 4-bit g64 vs. NVFP4), single pass, structured output drafts well – prose will be lower. He also reports his M4 Max at 65.8 tok/s on the same model (oMLX, MTP3). Two reports now, but still not in the official README.
 - TensorFold's supported models per README: Nemotron 3.5 Lightning 30B-A3B and Qwen3.8-27B need a 32 GB+ Mac; Qwen3.8 Flash Next needs 192 GB+. **My 64 GB M4 Max can run the first two, not Flash Next.**
 - Imprint shows no license on GitHub – don't copy code from it until that's clarified.
 - The post tags **@ashhart**; Ash's X handle is **@ashxhart**.
