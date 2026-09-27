@@ -11,7 +11,7 @@ Reference data taken from the [MCDMA README → "Hardware used"](https://github.
 | macOS | macOS 27, build 26A428 + Command Line Tools 27.0 | — | ✅ | macOS 27, build 26A428 (required exact build) |
 | Enclosure | OWC Mercury Helios 5S (Thunderbolt 5) | — | ✅ in use | same |
 | NIC | Mellanox ConnectX-4 Lx, MCX4121A-ACAT (CX4121C), dual SFP28, 25 GbE, PCIe 3.0 x8, refurbished | 71,90 € | ✅ bought · ⚠️ card in the enclosure to be confirmed via PCI ID | ConnectX-5 Ex MCX516A-CDAT, dual QSFP28, 100 GbE |
-| Peer | 2× NVIDIA DGX Spark (ConnectX-7) | — | ✅ Spark #1 serving via vLLM | 1× DGX Spark (2 Sparks tested for transfers) |
+| Peer | 2× NVIDIA DGX Spark (ConnectX-7) | — | ✅ Spark #1 serving via vLLM | 2× DGX Spark, one on each CX5 port ([mcdma.dev](https://mcdma.dev/)) |
 | RDMA cable | QSFP28-to-QSFP28 DAC, MCP1600-C001 compatible (FS.com) | — | ⏳ ordered · ⚠️ does not fit SFP28 ports | Mellanox MCP1600-C001E30N, 100G passive copper DAC, 1 m, one per Studio port |
 | Spark ↔ Spark cable | not bought yet – options: NVIDIA MCP1650-V00AE30 (reported working), Amphenol NJAAKK-N911 / Luxshare LMTQF022-SD-R (NVIDIA-validated) | — | ⏳ needed | – ([NVIDIA](https://docs.nvidia.com/dgx/dgx-spark/spark-clustering.html), [EXO Handbook](https://x.com/exolabs/status/2103617535765573959)) |
 | Management network | existing LAN (Mac + Sparks) | — | ✅ | separate Wi-Fi or Ethernet required |
@@ -29,6 +29,17 @@ My invoice shows a **ConnectX-4 Lx**, not the ConnectX-5 Ex used for all publish
 - **Speed:** 25 GbE per port instead of 100 GbE.
 
 Next step: check the PCI device ID on the Mac (System Information → PCI: `0x1015` = ConnectX-4 Lx, `0x1019` = ConnectX-5 Ex), then choose the cable.
+
+## Target shopping list (to match the validated setup)
+
+Per [mcdma.dev](https://mcdma.dev/) (checked 2026-09-27), Ash's own Mac + two-Spark setup uses exactly:
+
+| Part | Model | Qty | I have it? |
+| --- | --- | --- | --- |
+| NIC | Mellanox ConnectX-5 Ex **MCX516A-CDAT** (dual QSFP28) | 1 | ❓ invoice shows a ConnectX-4 Lx – to be confirmed |
+| Enclosure | OWC Mercury Helios 5S (Thunderbolt 5) | 1 | ✅ |
+| Mac ↔ Spark cable | Mellanox **MCP1600-C001E30N**, 100G QSFP28 passive DAC, 1 m | 2 (one per Spark) | ⏳ one FS.com compatible cable ordered |
+| Spark ↔ Spark cable | see bill of materials above | 1 | ⏳ needed |
 
 ## Differences from the reference setup (read this if you rebuild it)
 
