@@ -1,7 +1,7 @@
 # DGX Spark – Field Notes
 
 What I learned while setting up two DGX Sparks and a Mac Studio, collected from docs, forums and people who know more than I do.
-**Stand / as of: 2026-09-26.** Forum knowledge changes fast, especially around firmware. Every claim links to its source. Numbers here are **other people's measurements**, not mine – mine go to [`benchmarks/`](../benchmarks/).
+**Stand / as of: 2026-09-27.** Forum knowledge changes fast, especially around firmware. Every claim links to its source. Numbers here are **other people's measurements**, not mine – mine go to [`benchmarks/`](../benchmarks/).
 
 ## 1. The one-sentence model of the Spark
 
@@ -50,6 +50,16 @@ Sources: [EXO Handbook](https://x.com/exolabs/status/2103617535765573959), [LMSY
 The Spark is strong at **prefill** (reading the prompt, compute-bound), a Mac with higher memory bandwidth is strong at **decode** (writing, bandwidth-bound). In one llama.cpp comparison an M4 Max generated faster than a Spark while the Spark processed prompts faster ([llama.cpp #16578](https://github.com/ggml-org/llama.cpp/discussions/16578)).
 MCDMA demonstrated a first prefill-on-Spark / decode-on-Mac handoff with Qwen3-4B ([MCDMA](https://github.com/ashhart/MCDMA)). Testing this on my setup is one of the main goals of this lab.
 
+**What mcdma.dev shows (checked 2026-09-27):** [mcdma.dev](https://mcdma.dev/) is Ash's project page with every result linked to its run.
+
+- **His full setup is my target setup:** one Mac Studio + **two DGX Sparks**, both linked into **one dual-port ConnectX-5 Ex (MCX516A-CDAT)** in an OWC Helios 5S over Thunderbolt 5, **one Mellanox MCP1600-C001E30N (1 m) per Spark**, RoCE v2, 100GBASE-CR4 with RS-FEC. Each Spark can write Mac memory independently.
+- **Why:** on Qwen3-4B the Spark prefilled faster (2.69 s vs. 8.81 s) and the M3 Ultra decoded faster (109 vs. 42 tok/s).
+- **Split inference result** (Qwen3-4B MXFP4, vLLM prefill on Spark, MLX decode on Mac, 128-token reply, single request, 15 Sept 2026): **1.8× faster than the Mac alone at 15,402 prompt tokens**; KV cache 2,166 MiB pulled in 0.48 s (37.7 Gbit/s). At 28,852 tokens the Spark alone was 0.59 s faster, because this first version stages the cache through a file on each side. KV cosine similarity ≥ 0.986 on every layer.
+- **GPU keepalive:** a small Metal workload on the Mac cut slow write completions (> 16 µs) from 195 to 10–15 per 1,000. Cause not measured.
+- **Limits stated on the site:** development beta; install needs Reduced Security and a SIP exception; a fresh-machine install hasn't been repeated end to end; registering an existing `cudaMalloc` buffer directly failed on the Spark.
+- **Next:** faster hand-off (pre-registered buffers, layer-by-layer streaming), ~25 more experiments, oMLX integration (PR open), and AMD Strix Halo / Vulkan – Ash is looking for a system to borrow.
+- Setups the site lists: 1 Spark + 1 MacBook Pro direct (no switch), 4 Sparks + 1 Mac Studio, and larger fleets through a MikroTik switch.
+
 **Two MCDMA link types – don't mix them up:**
 
 | Link | Published by Ash Hart | Measured (his numbers) | In the public repo? |
@@ -76,19 +86,20 @@ Beyond MCDMA, Ash Hart ([@ashxhart](https://x.com/ashxhart)) published several r
 
 | Repo | What it does (per README) | License | Reported by @volatilemarkts |
 | --- | --- | --- | --- |
-| [TensorFold](https://github.com/ashhart/TensorFold) | Fast, exact LLM decoding on **Apple Silicon (MLX)**, OpenAI-compatible endpoint | MIT | M3 Ultra, GLM: 45 → 60 tok/s, identical output |
+| [TensorFold](https://github.com/ashhart/TensorFold) | Fast, exact LLM decoding with an OpenAI-compatible endpoint – Metal kernels on Apple Silicon, **CUDA kernels on DGX Spark** (README updated 2026-09-27) | MIT | M3 Ultra, GLM: 45 → 60 tok/s, identical output |
 | [Imprint](https://github.com/ashhart/Imprint) | Saves processed context (KV cache) to disk and restores it – faster time to first token | none shown on GitHub | 44K-token context: 188 s cold → under 2 s |
 | [MCDMA](https://github.com/ashhart/MCDMA) | RDMA between Spark and Mac | Apache-2.0 | ~22–27 Gb/s, zero mismatches |
 | [Drift](https://github.com/ashhart/Drift) | Several models sharing memory over the network | Apache-2.0 | 9 models on 5 hardware families |
 | [Syntra](https://github.com/ashhart/Syntra) | Decision engine (routing) | Apache-2.0 | – |
 | [SparkPilot](https://github.com/ashhart/SparkPilot) | iPhone/iPad app showing GPU load, temperature and memory of DGX Sparks (beta) | Apache-2.0 (+ third-party AGPL/MIT parts) | – |
+| [DGX-Anti-OOM](https://github.com/ashhart/DGX-Anti-OOM) | Small script to stop a DGX Spark from running out of memory (see known problems above) | none shown on GitHub | – |
 | [omlx (fork)](https://github.com/ashhart/omlx) | LLM server for Apple Silicon; fork of [jundot/omlx](https://github.com/jundot/omlx) | Apache-2.0 | serves GLM across Mac Studios |
 
-**Open points before I rely on this:**
+**Status check (updated 2026-09-27):**
 
-- The post says TensorFold runs GLM-5.3-Flash 1.8–2.1× faster than vLLM **on DGX Sparks**. The TensorFold README only lists Apple Silicon (MLX) and does not mention Spark or CUDA (checked 2026-09-26).
-- **A second user report on a Spark:** [@WescheNex1q](https://x.com/WescheNex1q/status/2103952756553699559) (2026-09-26) ran Qwen3.8-27B on one Spark, same 3 prompts, thinking off: **TensorFold with DFlash2 drafts 102.9 tok/s vs. vLLM MTP=3 (NVFP4) 34.9 tok/s**, TensorFold without drafts 12.9 tok/s; per prompt 126.9 / 75.7 / 106.2 tok/s (sequence / code / JSON); TTFT 0.12 s; drafted and serial output sha256-identical. His own caveats: weights not matched (MLX 4-bit g64 vs. NVFP4), single pass, structured output drafts well – prose will be lower. He also reports his M4 Max at 65.8 tok/s on the same model (oMLX, MTP3). Two reports now, but still not in the official README.
-- TensorFold's supported models per README: Nemotron 3.5 Lightning 30B-A3B and Qwen3.8-27B need a 32 GB+ Mac; Qwen3.8 Flash Next needs 192 GB+. **My 64 GB M4 Max can run the first two, not Flash Next.**
+- **TensorFold now officially supports DGX Spark.** The README (updated 2026-09-27) says it runs CUDA kernels on Linux/NVIDIA, reads the same MLX 4-bit checkpoints from Hugging Face, runs inside NVIDIA's PyTorch container, and "decodes 1.6 to 3x faster than vLLM with MTP drafts, one Spark or two". Two Sparks split a model over their direct link. Earlier on 2026-09-26 the README only listed Apple Silicon.
+- **User report matching that claim:** [@WescheNex1q](https://x.com/WescheNex1q/status/2103952756553699559) ran Qwen3.8-27B on one Spark, same 3 prompts, thinking off: **TensorFold with DFlash2 drafts 102.9 tok/s vs. vLLM MTP=3 (NVFP4) 34.9 tok/s**, TensorFold without drafts 12.9 tok/s; per prompt 126.9 / 75.7 / 106.2 tok/s (sequence / code / JSON); TTFT 0.12 s; drafted and serial output sha256-identical. His caveats: weights not matched (MLX 4-bit g64 vs. NVFP4), single pass, structured output drafts well – prose will be lower. His M4 Max: 65.8 tok/s on the same model (oMLX, MTP3).
+- TensorFold's Mac model sizes per README: Nemotron 3.5 Lightning 30B-A3B and Qwen3.8-27B need a 32 GB+ Mac; Qwen3.8 Flash Next needs 192 GB+. **My 64 GB M4 Max can run the first two, not Flash Next.**
 - Imprint shows no license on GitHub – don't copy code from it until that's clarified.
 - The post tags **@ashhart**; Ash's X handle is **@ashxhart**.
 
